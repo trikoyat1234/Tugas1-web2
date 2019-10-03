@@ -16,7 +16,7 @@
 
                         <div class="form-group row">
                             <div class="col-md-6">
-                                <input id="users_id" type="hidden" class="form-control @error('users_id') is-invalid @enderror" name="users_id" value="{{ old('users_id') }}" required autocomplete="email">
+                                <input id="users_id" type="hidden" class="form-control @error('users_id') is-invalid @enderror" name="users_id" value="{{ Auth::id() }}" required autocomplete="users_id">
 
                                 @error('users_id')
                                     <span class="invalid-feedback" role="alert">
@@ -29,4 +29,10 @@
                                 <button type="submit" class="btn btn-primary">
                                     {{ __('Simpan') }}
                                 </button>
+                            </div>
+                        </div>
+                        <div class="form-group row mb-0">
+                           <div class="col-md-8 offset-md-4">
+                               <a href="{!! route('kategori_artikel.index') !!}" class="btn btn-danger">Batal</a>
+                        </div>
                         

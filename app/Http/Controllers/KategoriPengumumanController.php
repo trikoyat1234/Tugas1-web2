@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\KategoriPengumuman;
 
 class KategoriPengumumanController extends Controller
 {
@@ -11,9 +12,11 @@ class KategoriPengumumanController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+     public function index()
     {
         //
+        $kategoriPengumuman = KategoriPengumuman::all();
+        return view ('kategori_pengumuman.index')->with('data',$kategoriPengumuman);
     }
 
     /**
@@ -24,6 +27,7 @@ class KategoriPengumumanController extends Controller
     public function create()
     {
         //
+        return view('kategori_pengumuman.create');
     }
 
     /**
@@ -35,6 +39,9 @@ class KategoriPengumumanController extends Controller
     public function store(Request $request)
     {
         //
+        $input = $request->all();
+        KategoriPengumuman::create($input);
+        return redirect(route('kategori_pengumuman.index'));
     }
 
     /**
@@ -46,6 +53,8 @@ class KategoriPengumumanController extends Controller
     public function show($id)
     {
         //
+        $kategoriPengumuman = KategoriPengumuman::find($id);
+        return view ('kategori_pengumuman.show')->with('data',$kategoriPengumuman);
     }
 
     /**

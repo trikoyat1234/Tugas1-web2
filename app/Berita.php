@@ -10,6 +10,6 @@ class Berita extends Model
     protected $table = 'berita';
     //
     protected $fillable = [
-        'judul','isi','users_id','kategori_berita_id' 
+        'judul','isi','users_id','kategori_berita_id',
     ];
 }

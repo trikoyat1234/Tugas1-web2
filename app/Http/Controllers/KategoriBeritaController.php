@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\KategoriBerita;
 
 class KategoriBeritaController extends Controller
 {
@@ -11,9 +12,11 @@ class KategoriBeritaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+   public function index()
     {
         //
+        $kategoriBerita = KategoriBerita::all();
+        return view ('kategori_berita.index')->with('data',$kategoriBerita);
     }
 
     /**
@@ -24,6 +27,7 @@ class KategoriBeritaController extends Controller
     public function create()
     {
         //
+        return view('kategori_berita.create');
     }
 
     /**
@@ -35,6 +39,9 @@ class KategoriBeritaController extends Controller
     public function store(Request $request)
     {
         //
+        $input = $request->all();
+        KategoriBerita::create($input);
+        return redirect(route('kategori_berita.index'));
     }
 
     /**
@@ -46,6 +53,8 @@ class KategoriBeritaController extends Controller
     public function show($id)
     {
         //
+        $kategoriBerita= KategoriBerita::find($id);
+        return view ('kategori_berita.show')->with('data',$kategoriBerita);
     }
 
     /**

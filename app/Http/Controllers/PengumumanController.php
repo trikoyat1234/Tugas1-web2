@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Pengumuman;
 
 class PengumumanController extends Controller
 {
@@ -14,6 +15,8 @@ class PengumumanController extends Controller
     public function index()
     {
         //
+        $Pengumuman = Pengumuman::all();
+        return view ('pengumuman.index')->with('data',$Pengumuman);
     }
 
     /**
@@ -24,6 +27,7 @@ class PengumumanController extends Controller
     public function create()
     {
         //
+        return view('pengumuman.create');
     }
 
     /**
@@ -35,6 +39,9 @@ class PengumumanController extends Controller
     public function store(Request $request)
     {
         //
+        $input = $request->all();
+        Pengumuman::create($input);
+        return redirect(route('pengumuman.index'));
     }
 
     /**
@@ -46,6 +53,8 @@ class PengumumanController extends Controller
     public function show($id)
     {
         //
+        $Pengumuman = Pengumuman::find($id);
+        return view ('pengumuman.show')->with('data',$Pengumuman);
     }
 
     /**
