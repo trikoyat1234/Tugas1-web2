@@ -16,7 +16,7 @@ class GaleriController extends Controller
     {
         //
         $Galeri = Galeri::all();
-        return view ('galeri.index')->with('data',$Galeri);
+        return view ('galeri.index',compact('Galeri'));
     }
 
     /**
@@ -26,8 +26,9 @@ class GaleriController extends Controller
      */
     public function create()
     {
-        //
-        return view('galeri.create');
+        $KategoriGaleri = KategoriGaleri::pluck('judul', 'id');
+        return view('galeri.create', compact('KategoriGaleri'));
+
     }
 
     /**
@@ -54,7 +55,7 @@ class GaleriController extends Controller
     {
         //
         $Galeri = Galeri::find($id);
-        return view ('galeri.show')->with('data',$Galeri);
+        return view ('galeri.show',compact('Galeri'));
     }
 
     /**
@@ -63,9 +64,12 @@ class GaleriController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+     public function edit($id)
     {
         //
+         $Galeri = Galeri::find($id);
+       
+     return view ('galeri.edit',compact('Galeri'));
     }
 
     /**
@@ -78,6 +82,11 @@ class GaleriController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $Galeri = Galeri::find($id);
+        $input = $request->all();
+       
+        $Galeri->update($input);
+        return redirect(route('galeri.index'));
     }
 
     /**
@@ -89,5 +98,9 @@ class GaleriController extends Controller
     public function destroy($id)
     {
         //
+        $Galeri = Galeri::find($id);
+      
+         $Galeri->delete();
+         return redirect(route('galeri.index'));
     }
 }

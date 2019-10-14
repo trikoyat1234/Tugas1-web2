@@ -27,6 +27,13 @@
 							<td>{!! $item->created_at !!}</td>
 							<td>{!! $item->updated_at !!}</td>
 							<td><a href="{!! route('kategori_pengumuman.show',[$item->id]) !!}" class="btn btn-primary">Lihat</a></td>
+
+<td><a href="{!! route('kategori_pengumuman.edit',[$item->id]) !!}" class="btn btn-primary">edit</a></td>
+							<td>
+							{!! Form::open(['route' => ['kategori_pengumuman.destroy',$item->id], 'method' => 'delete']); !!}
+				            {!! Form::submit('Hapus',['class'=>'btn btn-danger']); !!}
+				            {!! Form::close() !!}
+
 </tr>
 
 @endforeach

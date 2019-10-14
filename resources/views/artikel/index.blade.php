@@ -14,7 +14,7 @@
 							<td>Judul</td>
 							<td>Isi</td>
 							<td>Users Id</td>
-							<td>Kategori Arikel Id</td>
+							<td>Kategori Artikel Id</td>
 							<td>Created</td>
 							<td>Updated</td>
 						</tr>
@@ -28,7 +28,10 @@
 							<td>{!! $item->kategori_artikel_id !!}</td>
 							<td>{!! $item->created_at !!}</td>
 							<td>{!! $item->updated_at !!}</td>
+
 							<td><a href="{!! route('artikel.show',[$item->id]) !!}" class="btn btn-primary">Lihat</a></td>
+
+							</td>
 						</tr>
 
 					@endforeach

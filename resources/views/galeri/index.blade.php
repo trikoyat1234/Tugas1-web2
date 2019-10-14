@@ -20,7 +20,7 @@
 							<td>Updated</td>
 						</tr>
 
-					@foreach($data as $item)
+					@foreach($Galeri as $item)
 
 						<tr>
 							<td>{!! $item->nama !!}</td>
@@ -31,6 +31,11 @@
 							<td>{!! $item->created_at !!}</td>
 							<td>{!! $item->updated_at !!}</td>
 							<td><a href="{!! route('galeri.show',[$item->id]) !!}" class="btn btn-primary">Lihat</a></td>
+							<td><a href="{!! route('galeri.edit',[$item->id]) !!}" class="btn btn-primary">edit</a></td>
+							<td>
+							{!! Form::open(['route' => ['galeri.destroy',$item->id], 'method' => 'delete']); !!}
+				            {!! Form::submit('Hapus',['class'=>'btn btn-danger']); !!}
+				            {!! Form::close() !!}
 						</tr>
 
 					@endforeach

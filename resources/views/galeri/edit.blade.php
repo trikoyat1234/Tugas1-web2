@@ -5,19 +5,20 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">List Kategori Arrikel</div>
+                <div class="card-header">Ubah data galeri</div>
 
                 <div class="card-body">
-                {!! Form::open(['route' => 'artikel.store', 'method' => 'post']); !!}
-                  @include('artikel.form')
-                {!! Form::close() !!}
+              	
+                {!! Form::model($Galeri,['route' => ['galeri.update', $Galeri->id],'method' => 'patch']); !!}
+              		@include('galeri.form')
+              	{!! Form::close() !!}
                 </div>
             </div>
         </div>
     </div>
 </div>
-@endsection
 
+@endsection
 @section('script')
 <script src="https://cdn.ckeditor.com/4.13.0/full/ckeditor.js"></script>
     <script>

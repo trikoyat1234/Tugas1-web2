@@ -8,9 +8,10 @@
                 <div class="card-header">Tambah Data Galeri</div>
 
                 <div class="card-body">
-              	<form method="post" action="{!! route('galeri.store') !!}">
-              		@include('galeri.form')
-              	</form>
+              	
+              {!! Form::model($Galeri,['route' => ['galeri.create', $Galeri->id],'method' => 'patch']); !!}
+                  @include('galeri.form')
+                {!! Form::close() !!}
                 </div>
             </div>
         </div>
