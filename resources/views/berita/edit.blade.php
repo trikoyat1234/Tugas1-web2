@@ -6,12 +6,12 @@
 	<div class="row justify-content-center">
 		<div class="col-md-8">
 			<div class="card">
-				<div class="card-header"> artikel</div>
+				<div class="card-header"> berita</div>
 					<div class="card-body">
 						
-						{!! Form::model($Artikel,['route'=>['artikel.update',$Artikel->id],'method'=>'patch']) !!}
+						{!! Form::model($Berita,['route'=>['berita.update',$Berita->id],'method'=>'patch']) !!}
 						
-							@include('artikel.form')
+							@include('berita.form')
 						{!! Form::close() !!}
 			
 				</div>

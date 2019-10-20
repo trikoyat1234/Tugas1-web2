@@ -7,87 +7,44 @@ use App\KategoriPengumuman;
 
 class KategoriPengumumanController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-     public function index()
-    {
-        //
-        $kategoriPengumuman = KategoriPengumuman::all();
-        return view ('kategori_pengumuman.index')->with('data',$kategoriPengumuman);
-    }
+     public function index(){
+        $KategoriPengumuman=KategoriPengumuman::all();
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-        return view('kategori_pengumuman.create');
+        return view ('kategori_pengumuman.index',compact('KategoriPengumuman'));
     }
+    public function show($id){
+        $KategoriPengumuman=KategoriPengumuman::find($id);
+        return view ( 'kategori_pengumuman.show',compact('KategoriPengumuman'));
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-        $input = $request->all();
+    }
+    public function create(){
+        return view ( 'kategori_pengumuman.create');
+    }
+    public function store(Request $request){
+        $input=$request->all();
         KategoriPengumuman::create($input);
         return redirect(route('kategori_pengumuman.index'));
     }
+    public function destroy($id){
+        $KategoriPengumuman = KategoriPengumuman::find($id);
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-        $kategoriPengumuman = KategoriPengumuman::find($id);
-        return view ('kategori_pengumuman.show')->with('data',$kategoriPengumuman);
+        $KategoriPengumuman->delete();
+
+        return redirect(route('kategori_pengumuman.index'));
     }
+     public function edit($id){
+        $KategoriPengumuman=KategoriPengumuman::find($id);
+        return view('kategori_pengumuman.edit', compact('KategoriPengumuman'));
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
     }
+    public function update($id, Request $request){
+        $KategoriPengumuman=KategoriPengumuman::find($id);
+        $input=$request->all();
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
+    
+        $KategoriPengumuman->update($input);
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        return redirect(route('kategori_pengumuman.index'));
     }
 }
+

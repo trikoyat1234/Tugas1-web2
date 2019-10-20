@@ -7,87 +7,44 @@ use App\KategoriBerita;
 
 class KategoriBeritaController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-   public function index()
-    {
-        //
-        $kategoriBerita = KategoriBerita::all();
-        return view ('kategori_berita.index')->with('data',$kategoriBerita);
-    }
+  public function index(){
+        $KategoriBerita=KategoriBerita::all();
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-        return view('kategori_berita.create');
+        return view ('kategori_berita.index',compact('KategoriBerita'));
     }
+    public function show($id){
+        $KategoriArtikel=KategoriArtikel::find($id);
+        return view ( 'kategori_berita.show',compact('KategoriBerita'));
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-        $input = $request->all();
+    }
+    public function create(){
+        return view ( 'kategori_berita.create');
+    }
+    public function store(Request $request){
+        $input=$request->all();
         KategoriBerita::create($input);
         return redirect(route('kategori_berita.index'));
     }
+    public function destroy($id){
+        $KategoriBerita = KategoriBerita::find($id);
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-        $kategoriBerita= KategoriBerita::find($id);
-        return view ('kategori_berita.show')->with('data',$kategoriBerita);
+        $KategoriBerita->delete();
+
+        return redirect(route('kategori_berita.index'));
     }
+     public function edit($id){
+        $KategoriBerita=KategoriBerita::find($id);
+        return view('kategori_berita.edit', compact('KategoriBerita'));
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
     }
+    public function update($id, Request $request){
+        $KategoriBerita=KategoriBerita::find($id);
+        $input=$request->all();
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
+    
+        $KategoriBerita->update($input);
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        return redirect(route('kategori_berita.index'));
     }
 }
+
